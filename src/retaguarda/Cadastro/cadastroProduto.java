@@ -2,6 +2,7 @@ package retaguarda.Cadastro;
 
 import java.awt.EventQueue;
 import java.beans.PropertyVetoException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 
 import javax.swing.JInternalFrame;
@@ -13,142 +14,182 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 
 public class cadastroProduto extends JInternalFrame implements ActionListener {
-	private JButton btnNovoProduto;
+	private JButton btnNovoProd;
 	private JTextField txtCodigoProduto;
+	private JTextField txtNomeProduto;
+	private JTextField txtQntEstoque;
+	private JTextField txtGrupoProd;
+	private JTextField txtDepProd;
+	private JTextField txtSecaoProd;
+	JTabbedPane tabbedPane;
+	JPanel panelGeral;
+	JComboBox cmbAliq;
+	JButton btnGravarProd;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JFormattedTextField frmtdtxtfldR;
+
 	public cadastroProduto() throws ParseException {
+		iniciarComp();
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNovoProd) {
+			txtCodigoProduto.setEnabled(true);
+			txtCodigoProduto.setEnabled(true);
+			txtNomeProduto.setEnabled(true);
+			txtQntEstoque.setEnabled(true);
+			txtGrupoProd.setEnabled(true);
+			txtDepProd.setEnabled(true);
+			txtSecaoProd.setEnabled(true);
+			btnGravarProd.setEnabled(true);
+			btnNovoProd.setEnabled(false);
+		}else if(e.getSource() == btnGravarProd){
+			txtCodigoProduto.setEnabled(false);
+			txtCodigoProduto.setEnabled(false);
+			txtNomeProduto.setEnabled(false);
+			txtQntEstoque.setEnabled(false);
+			txtGrupoProd.setEnabled(false);
+			txtDepProd.setEnabled(false);
+			txtSecaoProd.setEnabled(false);
+			btnGravarProd.setEnabled(false);
+			btnNovoProd.setEnabled(true);
+			
+		}
+
+	}
+
+	public void iniciarComp() throws ParseException {
+		// Paramentros da Janela
 		setMaximizable(true);
 		setBounds(0, 0, 1024, 768);
 		this.setTitle("Cadastro de produto");
 		this.setClosable(true);
 		getContentPane().setLayout(null);
-		
-		btnNovoProduto = new JButton("Novo produto");
-		btnNovoProduto.setBounds(10, 11, 156, 54);
-		btnNovoProduto.addActionListener(this);
-		getContentPane().add(btnNovoProduto);
-		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 102, 864, 455);
-		getContentPane().add(tabbedPane);
-		
-		JPanel panelGeral = new JPanel();
-		tabbedPane.addTab("Geral", null, panelGeral, null);
-		panelGeral.setLayout(null);
-		
-		txtCodigoProduto = new JTextField();
-		txtCodigoProduto.setEnabled(false);
-		txtCodigoProduto.setBounds(52, 11, 196, 20);
-		panelGeral.add(txtCodigoProduto);
-		txtCodigoProduto.setColumns(10);
-		
+		// Instanciando itens da tela
 		JLabel lblCdigo = new JLabel("C\u00F3digo");
-		lblCdigo.setBounds(10, 14, 46, 14);
-		panelGeral.add(lblCdigo);
-		
 		JLabel lblNomeProduto = new JLabel("Nome produto");
-		lblNomeProduto.setBounds(10, 60, 82, 27);
-		panelGeral.add(lblNomeProduto);
-		
-		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setColumns(10);
-		textField.setBounds(102, 57, 225, 30);
-		panelGeral.add(textField);
-		
 		JLabel lblCusto = new JLabel("Estoque");
-		lblCusto.setBounds(10, 101, 82, 27);
-		panelGeral.add(lblCusto);
-		
-		textField_1 = new JTextField();
-		textField_1.setEnabled(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(102, 99, 86, 30);
-		panelGeral.add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setEnabled(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(102, 139, 86, 30);
-		panelGeral.add(textField_2);
-		
 		JLabel lblGrupo = new JLabel("Grupo");
-		lblGrupo.setBounds(10, 141, 82, 27);
-		panelGeral.add(lblGrupo);
-		
 		JLabel lblDepartamento = new JLabel("Departamento");
-		lblDepartamento.setBounds(10, 182, 82, 27);
-		panelGeral.add(lblDepartamento);
-		
-		textField_3 = new JTextField();
-		textField_3.setEnabled(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(102, 180, 86, 30);
-		panelGeral.add(textField_3);
-		
-		textField_4 = new JTextField();
-		textField_4.setEnabled(false);
-		textField_4.setColumns(10);
-		textField_4.setBounds(102, 220, 86, 30);
-		panelGeral.add(textField_4);
-		
 		JLabel lblSeo = new JLabel("Se\u00E7\u00E3o");
-		lblSeo.setBounds(10, 222, 82, 27);
-		panelGeral.add(lblSeo);
-		
-		JPanel panelPreco = new JPanel();
-		tabbedPane.addTab("Custos", null, panelPreco, null);
-		panelPreco.setLayout(null);
-		
-		JLabel lblAliquota = new JLabel("Al\u00EDquota");
-		lblAliquota.setBounds(10, 22, 82, 27);
-		panelPreco.add(lblAliquota);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(10, 55, 93, 20);
-		panelPreco.add(comboBox);
-		
 		JLabel lblCusto_1 = new JLabel("Custo");
-		lblCusto_1.setBounds(10, 95, 33, 27);
-		panelPreco.add(lblCusto_1);
-		
 		JLabel lblLucro = new JLabel("Lucro");
-		lblLucro.setBounds(174, 95, 82, 27);
-		panelPreco.add(lblLucro);
-		
-		MaskFormatter dinheiro = new MaskFormatter("R$###,###,##");
-		frmtdtxtfldR = new JFormattedTextField(dinheiro);
-		frmtdtxtfldR.setEnabled(false);
-		frmtdtxtfldR.setBounds(44, 98, 120, 24);
-		panelPreco.add(frmtdtxtfldR);
-		
-		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setEnabled(false);
-		formattedTextField_1.setBounds(207, 98, 120, 24);
-		panelPreco.add(formattedTextField_1);
-		
+		JPanel panelPreco = new JPanel();
+		JLabel lblAliquota = new JLabel("Al\u00EDquota");
+		JLabel lblPreo = new JLabel("Pre\u00E7o");
 		JPanel panelImpostos = new JPanel();
+		cmbAliq = new JComboBox();
+		//Defindo tamanho e posição
+		lblPreo.setBounds(277, 95, 46, 27);
+		lblAliquota.setBounds(10, 26, 82, 27);
+		lblGrupo.setBounds(10, 141, 82, 27);
+		lblCusto.setBounds(10, 101, 82, 27);
+		lblCdigo.setBounds(10, 14, 46, 14);
+		lblNomeProduto.setBounds(10, 60, 82, 27);
+		lblDepartamento.setBounds(10, 182, 82, 27);
+		lblSeo.setBounds(10, 222, 82, 27);
+		lblCusto_1.setBounds(10, 95, 33, 27);
+		lblLucro.setBounds(174, 95, 33, 27);
+
+		
+		
+		panelGeral = new JPanel();
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		txtCodigoProduto = new JTextField();
+		txtNomeProduto = new JTextField();
+		btnNovoProd = new JButton("Novo produto");
+		txtQntEstoque = new JTextField();
+		txtGrupoProd = new JTextField();
+		txtSecaoProd = new JTextField();
+		txtDepProd = new JTextField();
+		btnGravarProd = new JButton("Gravar");
+
+		btnNovoProd.setBounds(10, 11, 159, 38);
+		tabbedPane.setBounds(10, 102, 864, 455);
+		txtCodigoProduto.setBounds(52, 11, 196, 20);
+		txtNomeProduto.setBounds(102, 57, 225, 30);
+		txtQntEstoque.setBounds(102, 99, 64, 30);
+		txtGrupoProd.setBounds(102, 139, 86, 30);
+		txtDepProd.setBounds(102, 180, 86, 30);
+		txtSecaoProd.setBounds(102, 220, 86, 20);
+		cmbAliq.setBounds(10, 52, 76, 20);
+		btnGravarProd.setBounds(196, 11, 159, 38);
+
+		btnNovoProd.addActionListener(this);
+		btnGravarProd.addActionListener(this);
+
+		getContentPane().add(btnNovoProd);
+		getContentPane().add(tabbedPane);
+		getContentPane().add(btnGravarProd);
+
+		tabbedPane.addTab("Geral", null, panelGeral, null);
+
+		panelGeral.setLayout(null);
+		panelGeral.add(txtCodigoProduto);
+		panelGeral.add(lblCdigo);
+		panelGeral.add(lblNomeProduto);
+		panelGeral.add(txtNomeProduto);
+		panelGeral.add(lblCusto);
+		panelPreco.add(lblCusto_1);
+		panelPreco.add(lblLucro);
+		panelPreco.setLayout(null);
+		panelPreco.add(lblAliquota);
+		panelPreco.add(cmbAliq);
+		panelPreco.add(lblPreo);
+
+		txtCodigoProduto.setColumns(10);
+		txtNomeProduto.setColumns(10);
+		txtQntEstoque.setColumns(10);
+		txtGrupoProd.setColumns(10);
+		txtDepProd.setColumns(10);
+		txtSecaoProd.setColumns(10);
+
+		panelGeral.add(txtQntEstoque);
+		panelGeral.add(txtGrupoProd);
+		panelGeral.add(lblGrupo);
+		panelGeral.add(lblDepartamento);
+		panelGeral.add(txtDepProd);
+		panelGeral.add(txtSecaoProd);
+		panelGeral.add(lblSeo);
+
+		tabbedPane.addTab("Custos", null, panelPreco, null);
+		
 		tabbedPane.addTab("Impostos", null, panelImpostos, null);
 		
-
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==btnNovoProduto){
-			txtCodigoProduto.setEnabled(true);
-			frmtdtxtfldR.setEnabled(true);
-		}
+		// Desabilitado por padrão
+		btnGravarProd.setEnabled(false);
+		txtCodigoProduto.setEnabled(false);
+		txtNomeProduto.setEnabled(false);
+		txtQntEstoque.setEnabled(false);
+		txtGrupoProd.setEnabled(false);
+		txtSecaoProd.setEnabled(false);
+		txtDepProd.setEnabled(false);
 		
+		MaskFormatter mascaraCampo=null;
+		
+		mascaraCampo = new MaskFormatter(new DecimalFormat("#,###,##0.00").format(3));
+
+		JFormattedTextField formattedTextField = new JFormattedTextField(mascaraCampo);
+		formattedTextField.setBounds(53, 98, 99, 20);
+		formattedTextField.setVisible(true);
+		panelPreco.add(formattedTextField);
+		
+		/*
+		formattedTextField.setFormatterFactory(new DefaultFormatterFactory(
+				new MaskFormatter("R$ #,##0.00")
+				));
+		formattedTextField.setBounds(53, 98, 99, 20);
+		panelPreco.add(formattedTextField);
+		*/
+		//textField.setText(new DecimalFormat("R$ #,##0.00").format(5.0));
+				
 	}
 }
