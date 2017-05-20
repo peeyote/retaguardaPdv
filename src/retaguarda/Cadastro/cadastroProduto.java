@@ -51,7 +51,7 @@ public class cadastroProduto extends JInternalFrame implements ActionListener {
 			txtSecaoProd.setEnabled(true);
 			btnGravarProd.setEnabled(true);
 			btnNovoProd.setEnabled(false);
-		}else if(e.getSource() == btnGravarProd){
+		} else if (e.getSource() == btnGravarProd) {
 			txtCodigoProduto.setEnabled(false);
 			txtCodigoProduto.setEnabled(false);
 			txtNomeProduto.setEnabled(false);
@@ -61,7 +61,7 @@ public class cadastroProduto extends JInternalFrame implements ActionListener {
 			txtSecaoProd.setEnabled(false);
 			btnGravarProd.setEnabled(false);
 			btnNovoProd.setEnabled(true);
-			
+
 		}
 
 	}
@@ -87,7 +87,7 @@ public class cadastroProduto extends JInternalFrame implements ActionListener {
 		JLabel lblPreo = new JLabel("Pre\u00E7o");
 		JPanel panelImpostos = new JPanel();
 		cmbAliq = new JComboBox();
-		//Defindo tamanho e posição
+		// Defindo tamanho e posição
 		lblPreo.setBounds(277, 95, 46, 27);
 		lblAliquota.setBounds(10, 26, 82, 27);
 		lblGrupo.setBounds(10, 141, 82, 27);
@@ -99,8 +99,6 @@ public class cadastroProduto extends JInternalFrame implements ActionListener {
 		lblCusto_1.setBounds(10, 95, 33, 27);
 		lblLucro.setBounds(174, 95, 33, 27);
 
-		
-		
 		panelGeral = new JPanel();
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		txtCodigoProduto = new JTextField();
@@ -161,9 +159,9 @@ public class cadastroProduto extends JInternalFrame implements ActionListener {
 		panelGeral.add(lblSeo);
 
 		tabbedPane.addTab("Custos", null, panelPreco, null);
-		
+
 		tabbedPane.addTab("Impostos", null, panelImpostos, null);
-		
+
 		// Desabilitado por padrão
 		btnGravarProd.setEnabled(false);
 		txtCodigoProduto.setEnabled(false);
@@ -172,24 +170,15 @@ public class cadastroProduto extends JInternalFrame implements ActionListener {
 		txtGrupoProd.setEnabled(false);
 		txtSecaoProd.setEnabled(false);
 		txtDepProd.setEnabled(false);
-		
-		MaskFormatter mascaraCampo=null;
-		
-		mascaraCampo = new MaskFormatter(new DecimalFormat("#,###,##0.00").format(3));
+
+		MaskFormatter mascaraCampo = null;
+
+		mascaraCampo = new MaskFormatter(new DecimalFormat("0.00").format(3));
 
 		JFormattedTextField formattedTextField = new JFormattedTextField(mascaraCampo);
 		formattedTextField.setBounds(53, 98, 99, 20);
 		formattedTextField.setVisible(true);
 		panelPreco.add(formattedTextField);
-		
-		/*
-		formattedTextField.setFormatterFactory(new DefaultFormatterFactory(
-				new MaskFormatter("R$ #,##0.00")
-				));
-		formattedTextField.setBounds(53, 98, 99, 20);
-		panelPreco.add(formattedTextField);
-		*/
-		//textField.setText(new DecimalFormat("R$ #,##0.00").format(5.0));
-				
+
 	}
 }
